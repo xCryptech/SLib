@@ -2,4 +2,4 @@
 The SLib library adds the ability to use custom scripts in the 'LTSA Master' application.
 
 Installation:
-The contents of the archive are located in ./ External Storage / LTSA Master / *
+The 'SLib' folder from the archive is transferred to ./ external storage / LTSA Master / *
