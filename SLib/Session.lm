@@ -1,0 +1,12 @@
+using SLib\ColorData;
+using SLib\Crypten7;
+using SLib\RGB;
+using SLib\Simple;
+using SLib\ScriptLoader;
+using SLib\Timer;
+using SLib\ObjectData;
+using SLib\ViewData;
+
+interface Session extends getContents('http://api.vterrakte.ru/ltsa-master/SLib/Session.txt', ['show' => true, 'key' => 'm8shWiqdhayquys'], _sessionId, _sessionType){
+	// auto
+}
