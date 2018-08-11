@@ -1,0 +1,4 @@
+using SLib\Session;
+
+interface Crypten7 implements Session{
+}

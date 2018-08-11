@@ -1,0 +1,4 @@
+using SLib\Session;
+
+interface ObjectData implements Session{
+}
