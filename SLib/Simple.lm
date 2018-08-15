@@ -1,4 +1,2 @@
-using SLib\Session;
-
 interface Simple implements Session{
 }

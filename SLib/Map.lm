@@ -1,0 +1,16 @@
+class Map extends Session {
+	/** @var int id */
+	protected id = 0;
+	
+	/** 
+	 * @param int id 
+	 *
+	 * @return void
+	 */
+	protected function __construct(int id){
+		parent::__construct(id);
+		Int this.id = id;
+		Session::ACTION_MAP::getMapById(%this.id‰);
+	}
+	
+}

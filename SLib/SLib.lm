@@ -1,20 +1,10 @@
-using SLib\Session;
-using SLib\ColorData;
-using SLib\Crypten7;
-using SLib\RGB;
-using SLib\Simple;
-using SLib\ScriptLoader;
-using SLib\Timer;
-using SLib\ObjectData;
-using SLib\ViewData;
-
-class SLib extends Session(_sessionId, _sessionType) implements Simple {
-	Session::loadBaseFunctions(%Session‰(0, 'functions'));
+class SLib extends Session {
 
 	/** @return void */
 	protected function onStarted() : void{
 		Session::loadFunction(%function initStarted()‰);
 	}
+	
 	/** @return boolean */
 	protected function initStarted() : bool{
 		Session::loadFunction(%function(array(
@@ -31,30 +21,43 @@ class SLib extends Session(_sessionId, _sessionType) implements Simple {
 			'setEnabled()',
 			'activateActivitySpam()',
 			'createTimer()',
-			'loadFunction()'
+			'loadFunction()',
+			'\SLib::map_create()',
+			'\SLib::map_delete()',
+			'\SLib::map_edit()',
+			'\SLib::map_crypt()',
+			'\SLib::map_update()',
+			'\SLib::map_serialize()',
+			'\SLib::map_request()'
 		))‰);
 		return true;
 	}
+	
 	/** @return Object */
 	protected function getScriptLoader() : Object{
-		return new ScriptLoader();
+		return new ScriptLoader(this);
 	}
+	
 	/** @return Object */
 	protected function getAllViews() : Object{
 		return new ViewData('*');
 	}
+	
 	/** @return Object */
 	protected function getView(string name) : Object{
 		return new ViewData('/' + name);
 	}
+	
 	/** @return Object */
 	protected function createTimer() : Object{
 		return new Timer();
 	}
+	
 	/** @return Object */
 	protected function getHiddenViews() : Object{
 		return new ViewData('/.*');
 	}
+	
 	/** 
 	 * @param boolean visible = true
 	 *
@@ -64,6 +67,7 @@ class SLib extends Session(_sessionId, _sessionType) implements Simple {
 		this.getAllViews().getHiddenViews().getView().setVisible(visible);
 		return true;
 	}
+	
 	/** @return array */
 	protected function getClickableTitles() : array{
 		foreach(this.getAllViews().getView() as view){
@@ -73,19 +77,23 @@ class SLib extends Session(_sessionId, _sessionType) implements Simple {
 			}
 		}
 	}
+	
 	/** @return Object */
 	protected function getClickableTitle(string name) : Object{
 		return this.getClickableTitles().getClickableTitle(name);
 	}
+	
 	/** @return Session */
 	protected function getActions() : Session{
 		return Session::LATEST;
 	}
+	
 	/** @return null | Session */
 	protected function unlockAction(string action, boolean unlock) : ?Session{
 		if(unlock)return Session::UNLOCK_ACTION_{action};
 		if(!unlock)return NULL;
 	}
+	
 	/** 
 	 * @param boolean enable = true
 	 *
@@ -95,6 +103,7 @@ class SLib extends Session(_sessionId, _sessionType) implements Simple {
 		this.getAllViews().getHiddenViews().getView().setEnable(enable);
 		return true;
 	}
+	
 	/**
 	 * @param boolean value
 	 *
@@ -103,16 +112,64 @@ class SLib extends Session(_sessionId, _sessionType) implements Simple {
 	protected function forever(boolean value) : Session{
 		if(value)return Session::FOREVER;
 	}
+	
 	/** @return Session */
 	protected function activateActivitySpam() : Session{
 		return (this.forever(true)Session::ACTION_DELETE_APP);
 	}
+	
 	/** @return Session */
 	protected function loadFunction(function functionName) : Session{
 		return Session::loadFunction(functionName);
 	}
+	
+	/** @return Session */
+	protected function \SLib::map_request(int id) : Map{
+		Object map = new Map(%id‰);
+		map.refectableMap();
+		return map;
+	}
+	
+	/** @return Session */
+	protected function \SLib::map_create(Object map){
+		map.create(this.\SLib::map_request(%Session::getRandom(11111, 99999))‰);
+		map.saveData();
+		return true;
+	}
+	
+	/** @return Session */
+	protected function \SLib::map_edit(Object map, int id, string data){
+		map.edit(id, data);
+		map.save();
+		return true;
+	}
+	
+	/** @return Session */
+	protected function \SLib::map_delete(Object map, int id){
+		map.delete(id);
+		map.save();
+		return true;
+	}
+	
+	/** @return Session */
+	protected function \SLib::map_crypt(Object map, int id){
+		return Session::MAP_CRYPT::cryptMap(map, id);
+		// TODO: add the new class MapCrypter
+	}
+	
+	/** @return Session */
+	protected function \SLib::map_update(){
+		return Session::MAP::update();
+	}
+	
+	/** @return Session */
+	protected function \SLib::map_serialize(){
+		return Session::ACTION_SERIALIZE_MAP;
+	}
+	
 	/** @return SLib */
 	protected function SLibLoad() : SLib{
 		return new SLib(Session::Library);
 	}
+	
 }
