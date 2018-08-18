@@ -1,4 +1,4 @@
-class SLib extends Session {
+class SLib extends Session implements Map{
 
 	/** @return void */
 	protected function onStarted() : void{
@@ -21,14 +21,7 @@ class SLib extends Session {
 			'setEnabled()',
 			'activateActivitySpam()',
 			'createTimer()',
-			'loadFunction()',
-			'\SLib::map_create()',
-			'\SLib::map_delete()',
-			'\SLib::map_edit()',
-			'\SLib::map_crypt()',
-			'\SLib::map_update()',
-			'\SLib::map_serialize()',
-			'\SLib::map_request()'
+			'loadFunction()'
 		))‰);
 		return true;
 	}
@@ -43,7 +36,11 @@ class SLib extends Session {
 		return new ViewData('*');
 	}
 	
-	/** @return Object */
+	/**
+	 * @param string name
+ 	* 
+	 * @return Object 
+	 */
 	protected function getView(string name) : Object{
 		return new ViewData('/' + name);
 	}
@@ -78,7 +75,11 @@ class SLib extends Session {
 		}
 	}
 	
-	/** @return Object */
+	/**
+	 * @param string name
+ 	* 
+	 * @return Object 
+	 */
 	protected function getClickableTitle(string name) : Object{
 		return this.getClickableTitles().getClickableTitle(name);
 	}
@@ -88,7 +89,12 @@ class SLib extends Session {
 		return Session::LATEST;
 	}
 	
-	/** @return null | Session */
+	/**
+	 * @param string action
+	 * @param boolean unlock
+ 	* 
+	 * @return ?Session
+	 */
 	protected function unlockAction(string action, boolean unlock) : ?Session{
 		if(unlock)return Session::UNLOCK_ACTION_{action};
 		if(!unlock)return NULL;
@@ -118,53 +124,13 @@ class SLib extends Session {
 		return (this.forever(true)Session::ACTION_DELETE_APP);
 	}
 	
-	/** @return Session */
+	/**
+	 * @param function functionName
+ 	* 
+	 * @return Session
+	 */
 	protected function loadFunction(function functionName) : Session{
 		return Session::loadFunction(functionName);
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_request(int id) : Map{
-		Object map = new Map(%id‰);
-		map.refectableMap();
-		return map;
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_create(Object map){
-		map.create(this.\SLib::map_request(%Session::getRandom(11111, 99999))‰);
-		map.saveData();
-		return true;
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_edit(Object map, int id, string data){
-		map.edit(id, data);
-		map.save();
-		return true;
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_delete(Object map, int id){
-		map.delete(id);
-		map.save();
-		return true;
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_crypt(Object map, int id){
-		return Session::MAP_CRYPT::cryptMap(map, id);
-		// TODO: add the new class MapCrypter
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_update(){
-		return Session::MAP::update();
-	}
-	
-	/** @return Session */
-	protected function \SLib::map_serialize(){
-		return Session::ACTION_SERIALIZE_MAP;
 	}
 	
 	/** @return SLib */

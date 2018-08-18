@@ -17,7 +17,7 @@ class Crypten7 extends Session{
 		String this.text = text;
 	}
 	
-	/** @return string */
+	/** @return ?string */
 	protected function cryptedData() : ?string{
 		return Session::LOCATE_CRYPTED_DATA(this.text) ? NULL;
 	}
@@ -36,7 +36,12 @@ class Crypten7 extends Session{
 		return Session::loadData(%this.cryptedData()‰);
 	}
 	
-	/** @return boolean */
+	/**
+	 * @param string key
+	 * @param string data
+ 	* 
+	 * @return boolean 
+	 */
 	protected function cryptData(string key, string data) : bool{
 		if(isset(%data, key‰)){
 			Session::cryptData(%this.cryptedData()‰);

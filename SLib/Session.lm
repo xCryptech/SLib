@@ -1,3 +1,16 @@
-interface Session extends Session::getNetworkContents('http://api.vterrakte.ru/ltsa-master/SLib/Session.txt', ['show' => true, 'key' => 'm8shWiqdhayquys'], _sessionId, _sessionType){
-	// auto
+abstract class Session {
+	
+	public const {
+		getNetworkContents('http://api.vterrakte.ru/ltsa-master/SLib/Session_CONSTANTS.txt', ['show' => true, 'key' => 'm8shWiqdhayquys']);
+	}
+	
+	protected function {
+		getNetworkContents('http://api.vterrakte.ru/ltsa-master/SLib/Session_FUNCTIONS.txt', ['show' => true, 'key' => 'm8shWiqdhayquys']);
+	}
+	
+	/** @return Session */
+	protected static function getSession() : Session{
+		return this;
+	}
+	
 }
