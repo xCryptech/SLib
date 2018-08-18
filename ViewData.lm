@@ -1,0 +1,2 @@
+interface ViewData implements Session{
+}

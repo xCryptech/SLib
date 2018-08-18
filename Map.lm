@@ -1,0 +1,83 @@
+class Map extends Session {
+	/** @var int id */
+	protected id = 0;
+	
+	/** 
+	 * @param int id 
+	 *
+	 * @return void
+	 */
+	protected function __construct(int id) : void{
+		parent::__construct(id);
+		Int this.id = id;
+		Object this.id = Session::ACTION_MAP::getMapById(%id‰);
+	}
+	
+	/**
+	 * @param int id
+ 	* 
+	 * @return Map 
+	 */
+	protected function map_request(int id) : Map{
+		Object map = new Map(%id‰);
+		map.refectableMap();
+		return map;
+	}
+	
+	/**
+	 * @param Object map
+ 	* 
+	 * @return boolean 
+	 */
+	protected function map_create(Object map) : bool{
+		map.create(this.map_request(%Session::getRandom(11111, 99999))‰);
+		map.saveData();
+		return true;
+	}
+	
+	/**
+	 * @param Object map
+	 * @param int id
+	 * @param string data
+ 	* 
+	 * @return boolean 
+	 */
+	protected function map_edit(Object map, int id, string data) : bool{
+		map.edit(id, data);
+		map.save();
+		return true;
+	}
+	
+	/**
+	 * @param Object map
+	 * @param int id
+ 	* 
+	 * @return boolean 
+	 */
+	protected function map_delete(Object map, int id) : bool{
+		map.delete(id);
+		map.save();
+		return true;
+	}
+	
+	/**
+	 * @param Object map
+	 * @param int id
+ 	* 
+	 * @return Session
+	 */
+	protected function map_crypt(Object map, int id) : Session{
+		return MapCrypter::cryptMap(map, id);
+	}
+	
+	/** @return Session */
+	protected function map_update() : Session{
+		return Session::MAP::update();
+	}
+	
+	/** @return Session */
+	protected function map_serialize(){
+		return Session::ACTION_SERIALIZE_MAP;
+	}
+	
+}

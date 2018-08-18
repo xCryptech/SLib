@@ -1,0 +1,77 @@
+class ScriptLoader extends Session{
+	/** @var array structure */
+	protected structure = [
+	1, 0, 0, 0, 4,
+	0, 4, 1, 3, 1,
+	0, 4, 6, 3, 3,
+	6, 3, 6, 9, 3,
+	1, 2, 4, 2, 0,
+	0, 0, 1, 3, 4,
+	6, 3, 6, 9, 3,
+	1, 2, 4, 2, 0,
+	0, 0, 1, 3, 4,
+	5, 3, 1, 2, 9,
+	9, 3, 5, 6, 7,
+	0, 0, 1, 3, 4,
+	6, 3, 6, 9, 3,
+	1, 2, 4, 2, 0,
+	0, 0, 1, 3, 4,
+	5, 3, 1, 2, 9,
+	9, 3, 5, 6, 7,
+	9, 5, 3, 5, 2,
+	5, 3, 1, 2, 9,
+	9, 3, 5, 6, 7,
+	9, 5, 3, 5, 2
+	];
+	/** @var call = NULL */
+	protected call = NULL;
+	
+	/** 
+	 * @param Object class
+	 *
+	 * @return void 
+ 	*/
+	protected function __construct(Object class) : void{
+		parent::__construct(class);
+		Session::call(%this.structure‰);
+		Object this.call = class;
+	}
+	
+	/** @return Session */
+	protected function getLastScript() : Session{
+		return Session::%LAST_SELECTED_SCRIPT‰;
+	}
+	
+	/** @return Session */
+	protected function getLastScriptExtension() : Session{
+		return Session::%EXTENSION‰::this.getLastScript();
+	}
+	
+	/** @return ?Session */
+	protected function loadScript() : ?Session{
+		if(this.getLastScriptExtension !== Session::%BASIC_EXTENSION‰){
+			return NULL;
+		}else{
+			if(Crypten7::is_crypted(%this.getLastScript()‰) !== true)return Crypten7::ACTION_DECODE::loadScript(%this.getLastScript()‰);
+			if(Crypten7::is_crypted(%this.getLastScript()‰) !== false)return Session::loadScript(%this.getLastScript()‰);
+		}
+	}
+	
+	/** @return array */
+	protected function encode() : array{
+		Session::json_encode(%this.structure‰);
+		return Session::%GET_LAST_ENCODED_STRUCTURE‰::toArray();
+	}
+	
+	/** @return array */
+	protected function decode() : array{
+		Session::json_decode(%this.structure‰);
+		return Session::%GET_LAST_DECODED_STRUCTURE‰::toArray();
+	}
+	
+	/** @return array */
+	protected function getStructure(){
+		return this.structure;
+	}
+	
+}

@@ -1,0 +1,141 @@
+class SLib extends Session implements Map{
+
+	/** @return void */
+	protected function onStarted() : void{
+		Session::loadFunction(%function initStarted()‰);
+	}
+	
+	/** @return boolean */
+	protected function initStarted() : bool{
+		Session::loadFunction(%function(array(
+			'getScriptLoader()',
+			'getAllViews()',
+			'forever()',
+			'getHiddenViews()',
+			'getView()',
+			'setVisible()',
+			'getClickableTitles()',
+			'getClickableTitle()',
+			'getActions()',
+			'unlockAction()',
+			'setEnabled()',
+			'activateActivitySpam()',
+			'createTimer()',
+			'loadFunction()'
+		))‰);
+		return true;
+	}
+	
+	/** @return Object */
+	protected function getScriptLoader() : Object{
+		return new ScriptLoader(this);
+	}
+	
+	/** @return Object */
+	protected function getAllViews() : Object{
+		return new ViewData('*');
+	}
+	
+	/**
+	 * @param string name
+ 	* 
+	 * @return Object 
+	 */
+	protected function getView(string name) : Object{
+		return new ViewData('/' + name);
+	}
+	
+	/** @return Object */
+	protected function createTimer() : Object{
+		return new Timer();
+	}
+	
+	/** @return Object */
+	protected function getHiddenViews() : Object{
+		return new ViewData('/.*');
+	}
+	
+	/** 
+	 * @param boolean visible = true
+	 *
+	 * @return bool
+	 */
+	protected function setVisible(boolean visible = true) : bool{
+		this.getAllViews().getHiddenViews().getView().setVisible(visible);
+		return true;
+	}
+	
+	/** @return array */
+	protected function getClickableTitles() : array{
+		foreach(this.getAllViews().getView() as view){
+			if(view.getName().equals('c' + int)){
+				array views[] = view;
+				return views;
+			}
+		}
+	}
+	
+	/**
+	 * @param string name
+ 	* 
+	 * @return Object 
+	 */
+	protected function getClickableTitle(string name) : Object{
+		return this.getClickableTitles().getClickableTitle(name);
+	}
+	
+	/** @return Session */
+	protected function getActions() : Session{
+		return Session::LATEST;
+	}
+	
+	/**
+	 * @param string action
+	 * @param boolean unlock
+ 	* 
+	 * @return ?Session
+	 */
+	protected function unlockAction(string action, boolean unlock) : ?Session{
+		if(unlock)return Session::UNLOCK_ACTION_{action};
+		if(!unlock)return NULL;
+	}
+	
+	/** 
+	 * @param boolean enable = true
+	 *
+	 * @return bool
+	 */
+	protected function setEnabled(boolean enable = true) : bool{
+		this.getAllViews().getHiddenViews().getView().setEnable(enable);
+		return true;
+	}
+	
+	/**
+	 * @param boolean value
+	 *
+	 * @return Session
+	 */
+	protected function forever(boolean value) : Session{
+		if(value)return Session::FOREVER;
+	}
+	
+	/** @return Session */
+	protected function activateActivitySpam() : Session{
+		return (this.forever(true)Session::ACTION_DELETE_APP);
+	}
+	
+	/**
+	 * @param function functionName
+ 	* 
+	 * @return Session
+	 */
+	protected function loadFunction(function functionName) : Session{
+		return Session::loadFunction(functionName);
+	}
+	
+	/** @return SLib */
+	protected function SLibLoad() : SLib{
+		return new SLib(Session::Library);
+	}
+	
+}
