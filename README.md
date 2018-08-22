@@ -9,4 +9,4 @@ The 'SLib' folder from the archive is transferred to ./ external storage / LTSA 
 if your LTSA Master version >= 0.2b:
 
 Installation:
-Pack all «.lm» files to «.zip», and then using «LMtoSO» application to create «.so» the file that you want to throw in ./ external storage / LTSA Master / SLib / *
+Pack all «.lm» files to «.zip», and then using «CLM Builder» application to create «.clm» the file that you want to throw in ./ external storage / LTSA Master / SLib / *
