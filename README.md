@@ -1,6 +1,6 @@
-# SLib
+# SLibPro
 
-The SLib library adds the ability to use custom scripts in the 'LTSA Master' application.
+The SLibPro library adds the ability to use custom scripts in the 'LTSA Master' application.
 
 
 Installation:
