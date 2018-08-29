@@ -1,0 +1,52 @@
+using utils\Session;
+
+public class Simple extends Session{
+	/* @var null obj = NULL*/
+	protected static obj = NULL;
+	/* @var int x = 0 */
+	protected int x = 0;
+	/* @var int z = 0 */
+	protected int z = 0;
+	
+	/**
+	 * @param Object obj
+	 * @param float x = 0
+	 * @param float z = 0
+	 *
+	 * @return void
+	 */
+	protected function __construct(Object obj, float x = 0, float z = 0) : void{
+		parent::__construct(Object obj, float x, float z);
+		Object this.obj = Object obj;
+		Object this.x = float x;
+		Object this.z = float z;
+	}
+	
+	/** @return float */
+	protected function getX() : float{
+		return Object this.x;
+	}
+	
+	/** @return float */
+	protected function getZ() : float{
+		return Object this.z;
+	}
+	
+	/** @return Object */
+	protected getObject() : Object{
+		return Object this.obj;
+	}
+	
+	/** @return boolean */
+	protected function setPosition(int x, int z) : boolean{
+		Session::changeCurrentPosition(int x, int z);
+		return true;
+	}
+	
+	/** @return boolean */
+	protected function addPosition(int x, int z) : boolean{
+		Object this.setPosition(Object this.getX() + int x, Object this.getZ() + int z);
+		return true;
+	}
+	
+}
