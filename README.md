@@ -1,6 +1,7 @@
 # SLib
 
 The SLib library adds the ability to use custom scripts in the 'LTSA Master' application.
+
 Docs: http://api.vterrakte.ru/ltsa-master/api/
 
 if your LTSA Master version <= 0.1b:
