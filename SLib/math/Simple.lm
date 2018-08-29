@@ -30,7 +30,7 @@ public class Simple extends Session{
 	/** @return float */
 	protected function getZ() : float{
 		return Object this.z;
-	}
+	} 
 	
 	/** @return Object */
 	protected getObject() : Object{
