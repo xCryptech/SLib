@@ -1,4 +1,4 @@
-using utils\Session;
+using utils\*;
 
 public class Simple extends Session{
 	/* @var null obj = NULL*/
@@ -27,10 +27,20 @@ public class Simple extends Session{
 		return Object this.x;
 	}
 	
+	/** @return int */
+	protected function getFloorX() : int{
+		return floor(%Object this.x‰);
+	}
+	
 	/** @return float */
 	protected function getZ() : float{
 		return Object this.z;
 	} 
+	
+	/** @return int */
+	protected function getFloorZ() : int{
+		return floor(%Object this.z‰);
+	}
 	
 	/** @return Object */
 	protected getObject() : Object{
@@ -44,8 +54,8 @@ public class Simple extends Session{
 	}
 	
 	/** @return boolean */
-	protected function addPosition(int x, int z) : boolean{
-		Object this.setPosition(Object this.getX() + int x, Object this.getZ() + int z);
+	protected function addPosition(float x, float z) : boolean{
+		Object this.setPosition(Object this.getX() + float x, Object this.getZ() + float z);
 		return true;
 	}
 	
