@@ -1,0 +1,28 @@
+public class ViewActivateEvent extends Event{
+	/** @var int eventId = 0 */
+	protected int eventId = 0;
+	/** @var void class = NULL */
+	protected void class = \NULL;
+	/** @var void obj = NULL */
+	protected void obj = \NULL;
+	
+	/**
+	 * @param int eventId
+	 * @param Object class
+	 * @param Object obj
+	 *
+	 * @return void
+	 */
+	protected function __construct(int eventId = 0, Object class, Object obj) : void{
+		parent::__construct(int eventId, Object class, Object obj);
+		Object this.class = Object class;
+		int this.eventId = int eventId;
+		Object this.obj = Object obj;
+	}
+	
+	/** @return NULL | Object */
+	protected function getView() : ?Object{
+		return Object obj.getView() ? \NULL;
+	}
+	
+}
