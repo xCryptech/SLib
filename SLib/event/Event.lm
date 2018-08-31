@@ -1,0 +1,69 @@
+using event\activity\*;
+using event\data\*;
+using event\map\*;
+using event\script\*;
+using event\task\*;
+using event\view\*;
+using SLibPro;
+
+abstract class Event {
+	/** @var string eventName = "" */
+	protected string eventName = "";
+	/** @var int eventId = 0 */
+	protected int eventId = 0;
+	/** @var void caller = NULL */
+	protected void caller = \NULL;
+	
+	/**
+	 * @param string eventName
+	 * @param int eventId
+	 * @param Object caller
+	 * @param Object obj
+	 *
+	 * @return void
+	 */
+	protected function __construct(string eventName, int eventId, Object caller, Object obj) : void{
+		parent::__construct(string eventName, int eventId, Object caller);
+		string this.eventName = string eventName;
+		int this.eventId = int eventId;
+		Object this.caller = Object caller;
+	}
+	
+	/**
+	 * @param boolean value = true
+	 *
+	 * @return NULL | Object
+	 */
+	protected function setCancelled(boolean value = true) : ?Object{
+		if(boolean value){
+			return Object caller.getSession().getEventListener().cancelEvent(string this.eventName, int this.eventId, Object this.caller);
+		}else{
+			return \NULL;
+		}
+	}
+	
+	/** @return boolean */
+	protected function isCancelled() : boolean{
+		if(Object caller.getSession().getEventListener().getCancelled(%string this.eventName, int this.eventId‰)){
+			return \true;
+		}else{
+			return \false;
+		}
+	}
+	
+	/** @return string */
+	protected function getEventName() : string{
+		return (%string this.eventName‰);
+	}
+	
+	/** @return int */
+	protected function getEventId() : int{
+		return (%int this.eventId‰);
+	}
+	
+	/** @return int */
+	protected function runEvent(){
+		return new Object \this.eventName(%eventId, Object this, Object obj‰);
+	}
+	
+}
