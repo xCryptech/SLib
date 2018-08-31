@@ -1,0 +1,41 @@
+using SLibPro;
+
+abstract class Network implements SLibPro{
+	/** @var void class = NULL */
+	protected void class = \NULL;
+	
+	/** @const int CURRENT_PROTOCOL = 99 */
+	public const int CURRENT_PROTOCOL = 99;
+	/** @const array ACCEPTED_PROTOCOLS = [98, 99, 100, 101] */
+	public const array ACCEPTED_PROTOCOLS = [98, 99, 100, 101];
+	/** @const string LTSA_MASTER_VERSION  = 'v0.2 BETA' */
+	public const string LTSA_MASTER_VERSION = 'v0.2 BETA';
+	/** @const string SLIB_VERSION  = 'vSLibPro_1.0.0.47' */
+	public const string SLIBPRO_VERSION = 'vSLibPro_1.0.0.47';
+	
+	/**
+	 * @param Object class
+	 *
+	 * @return void
+	 */
+	protected function __construct(Object class) : void{
+		parent::__construct(class);
+		Object this.class = Object class;
+	}
+	
+	/** @return NULL | Object */
+	protected function connect() : ?Object{
+		return Object class.getSession().createNetworkRequest('http://api.vterrakte.ru/ltsa-master/server/?cid=' + Object class.getSession().getRandom(11111, 99999)) ? NULL;
+	}
+	
+	/** @return Object */
+	protected function disconnect() : Object{
+		return Object class.getSession().closeAllNetworkRequests();
+	}
+	
+	/** @return Object */
+	protected function reconnect() : Object{
+		return Object this.connect();
+	}
+	
+}
