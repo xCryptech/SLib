@@ -1,15 +1,15 @@
 using SLibPro;
 
 abstract class Network implements SLibPro{
-	/** @var void class = NULL */
+	/** @var void class = \NULL */
 	protected void class = \NULL;
 	
-	/** @const int CURRENT_PROTOCOL = 99 */
-	public const int CURRENT_PROTOCOL = 99;
-	/** @const array ACCEPTED_PROTOCOLS = [98, 99, 100, 101] */
-	public const array ACCEPTED_PROTOCOLS = [98, 99, 100, 101];
-	/** @const string LTSA_MASTER_VERSION  = 'v0.2 BETA' */
-	public const string LTSA_MASTER_VERSION = 'v0.2 BETA';
+	/** @const int CURRENT_PROTOCOL = 100 */
+	public const int CURRENT_PROTOCOL = 100;
+	/** @const array ACCEPTED_PROTOCOLS = [98, 99, 100, 101, 102] */
+	public const array ACCEPTED_PROTOCOLS = [98, 99, 100, 101, 102];
+	/** @const string LTSA_MASTER_VERSION  = 'v0.3 BETA' */
+	public const string LTSA_MASTER_VERSION = 'v0.3 BETA';
 	/** @const string SLIB_VERSION  = 'vSLibPro_1.0.0.47' */
 	public const string SLIBPRO_VERSION = 'vSLibPro_1.0.0.47';
 	
